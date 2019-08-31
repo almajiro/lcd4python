@@ -14,15 +14,15 @@ DEFAULT_ATTRIBUTES = (
     'utilization.memory'
 )
 
-class Widget_Gpu:
+class Nvidia:
     def __init__(self):
-        self.name = 'GPU'
-        self.fontBig = ImageFont.truetype('./fonts/k8x12L.ttf', 12)
-        self.fontMid = ImageFont.truetype('./fonts/k8x12.ttf', 12)
-        self.fontSm = ImageFont.truetype('./fonts/misaki_gothic_2nd.ttf', 8)
+        self.name = 'NVIDIA'
+        self.fontBig = ImageFont.truetype('./lcd4python/fonts/k8x12L.ttf', 12)
+        self.fontMid = ImageFont.truetype('./lcd4python/fonts/k8x12.ttf', 12)
+        self.fontSm = ImageFont.truetype('./lcd4python/fonts/misaki_gothic_2nd.ttf', 8)
         self.fill = (0, 0, 0)
 
-        self.nvidia_img = Image.open('./images/nvidia.jpg')
+        self.nvidia_img = Image.open('./lcd4python/images/nvidia.jpg')
 
     def render(self, image):
         draw = ImageDraw.Draw(image)

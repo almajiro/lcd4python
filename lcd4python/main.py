@@ -1,17 +1,15 @@
 from PIL import Image, ImageDraw, ImageFont
-from mpd import MPDClient
 from datetime import datetime
 import numpy as np
 import time
-import socket
-from device import Device
-from display import Display
 
-from widget_cpu import Widget_Cpu
-from widget_gpu import Widget_Gpu
-from widget_clock import Widget_Clock
-from widget_mpd import Widget_Mpd
-from widget_linux import Widget_Linux
+from .device import Device
+from .display import Display
+from .widgets.cpu import Cpu
+from .widgets.mpd import Mpd
+from .widgets.linux import Linux
+from .widgets.clock import Clock
+from .widgets.nvidia import Nvidia
 
 def status_line(img, name):
     draw = ImageDraw.Draw(img)
@@ -56,54 +54,55 @@ def splashscreen():
     time.sleep(2)
 
 fill = (0, 0, 0)
-font = ImageFont.truetype('./fonts/misaki_gothic_2nd.ttf', 8)
+font = ImageFont.truetype('./lcd4python/fonts/misaki_gothic_2nd.ttf', 8)
 
-device = Device('/dev/ttyACM0', 9600, Display())
-splashscreen()
+device = Device('/dev/ttyUSB1', 115200, Display())
+#splashscreen()
 
 widgets = [
     [
-        Widget_Linux(),
+        Linux(),
         5,
         0
     ],
     [
-        Widget_Gpu(),
+        Nvidia(),
         5,
         0
     ],
     [
-        Widget_Cpu(),
+        Cpu(),
         10,
         0
     ],
     [
-        Widget_Clock(),
+        Clock(),
         5,              # display time
         0,              # start display time
     ],
     [
-        Widget_Mpd(),
-        30,
+        Mpd(),
+        15,
         0
     ]
 ]
 
 index = 0
 
-while True:
-    for widget in widgets:
-        while True:
-            image = Image.new('RGB', (128, 64), (255, 255, 255))
+def main():
+    while True:
+        for widget in widgets:
+            while True:
+                image = Image.new('RGB', (128, 64), (255, 255, 255))
+    
+                device.display.set_buffer(img_to_bmp(status_line(widget[0].render(image), widget[0].name)))
+                device.render()
+    
+                if widget[2] == 0:
+                    widget[2] = time.time()
+    
+                if ((time.time() - widget[2]) > widget[1]):
+                    widget[2] = 0
+                    break
 
-            device.display.set_buffer(img_to_bmp(status_line(widget[0].render(image), widget[0].name)))
-            device.render()
-
-            if widget[2] == 0:
-                widget[2] = time.time()
-
-            if ((time.time() - widget[2]) > widget[1]):
-                widget[2] = 0
-                break
-
-device.close()
+    device.close()

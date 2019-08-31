@@ -6,12 +6,12 @@ import time
 
 PACMAN_CHECK_INTERVAL = 1800
 
-class Widget_Linux:
+class Linux:
     def __init__(self):
         self.name = 'LINUX'
-        self.fontBig = ImageFont.truetype('./fonts/k8x12L.ttf', 12)
-        self.fontMid = ImageFont.truetype('./fonts/k8x12.ttf', 12)
-        self.fontSm = ImageFont.truetype('./fonts/misaki_gothic_2nd.ttf', 8)
+        self.fontBig = ImageFont.truetype('./lcd4python/fonts/k8x12L.ttf', 12)
+        self.fontMid = ImageFont.truetype('./lcd4python/fonts/k8x12.ttf', 12)
+        self.fontSm = ImageFont.truetype('./lcd4python/fonts/misaki_gothic_2nd.ttf', 8)
         self.fill = (0, 0, 0)
 
         self.nodename = subprocess.check_output(['uname', '-n']).decode()
@@ -22,7 +22,7 @@ class Widget_Linux:
 
         self.prev_update_time = 0
 
-        self.distro_img = Image.open('./images/archlinux-logo.png')
+        self.distro_img = Image.open('./lcd4python/images/archlinux-logo.png')
 
     def render(self, image):
         draw = ImageDraw.Draw(image)

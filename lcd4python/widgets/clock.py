@@ -1,7 +1,7 @@
 from datetime import datetime
 from PIL import ImageDraw, ImageFont
 
-class Widget_Clock:
+class Clock:
     def __init__(self):
         self.name = 'CLOCK'
         self.fontBig = ImageFont.truetype('/home/almajiro/.local/share/fonts/ProFont For Powerline.ttf', 30)

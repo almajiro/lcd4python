@@ -11,15 +11,15 @@ class Display:
     def render(self, device):
         render = 0
         for k in range(2):
-            device.command(0x40, k)
-            device.command(0xc0, k)
+            #device.command(0x40, k)
+            #device.command(0xc0, k)
 
             for j in range(8):
-                device.command(0xb8|j, k)
+                #device.command(0xb8|j, k)
 
                 for i in range(64):
-                    if i == 0:
-                        device.command(0x40, k)
+                    #if i == 0:
+                    #    device.command(0x40, k)
 
                     display_data = 0x00
 

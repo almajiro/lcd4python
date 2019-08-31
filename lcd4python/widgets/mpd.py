@@ -1,12 +1,12 @@
 from PIL import ImageDraw, ImageFont
 from mpd import MPDClient
 
-class Widget_Mpd:
+class Mpd:
     def __init__(self):
         self.name = 'MPD'
-        self.fontBig = ImageFont.truetype('./fonts/k8x12L.ttf', 12)
-        self.fontMid = ImageFont.truetype('./fonts/k8x12.ttf', 12)
-        self.fontSm = ImageFont.truetype('./fonts/misaki_gothic_2nd.ttf', 8)
+        self.fontBig = ImageFont.truetype('./lcd4python/fonts/k8x12L.ttf', 12)
+        self.fontMid = ImageFont.truetype('./lcd4python/fonts/k8x12.ttf', 12)
+        self.fontSm = ImageFont.truetype('./lcd4python/fonts/misaki_gothic_2nd.ttf', 8)
         self.fill = (0, 0, 0)
 
         self.mpd = MPDClient()

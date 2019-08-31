@@ -1,12 +1,12 @@
 from PIL import ImageDraw, ImageFont
 import psutil
 
-class Widget_Cpu:
+class Cpu:
     def __init__(self):
         self.name = 'CPU'
-        self.fontBig = ImageFont.truetype('./fonts/k8x12L.ttf', 12)
-        self.fontMid = ImageFont.truetype('./fonts/k8x12.ttf', 12)
-        self.fontSm = ImageFont.truetype('./fonts/misaki_gothic_2nd.ttf', 8)
+        self.fontBig = ImageFont.truetype('./lcd4python/fonts/k8x12L.ttf', 12)
+        self.fontMid = ImageFont.truetype('./lcd4python/fonts/k8x12.ttf', 12)
+        self.fontSm = ImageFont.truetype('./lcd4python/fonts/misaki_gothic_2nd.ttf', 8)
         self.fill = (0, 0, 0)
 
     # return img
